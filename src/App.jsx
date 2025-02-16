@@ -8,23 +8,23 @@ const App = () => {
 
   const route = createBrowserRouter([
     {
-      path: "gama_audios/",
+      path: "/",
       element: <Home />,
     },
     {
-      path: "/gama_audios/contacts",
+      path: "/contacts",
       element: <Contact />,
     },
     {
-      path: "/gama_audios/about",
+      path: "/about",
       element: <About />,
     },
     {
-      path: "/gama_audios/blogs",
+      path: "/blogs",
       element: <Blogs />,
     },
     {
-      path: "/gama_audios/video_downloads",
+      path: "/video_downloads",
       element: "Work under pogress...",
     },
   ])

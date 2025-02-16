@@ -8,17 +8,17 @@ import { Link } from 'react-router-dom';
 function Nav({ toggleMainVisibility }) {
 
 
-  const [img, setImg] = useState('/gama_audios/menu.svg');
+  const [img, setImg] = useState('/menu.svg');
   const changeImg = () => {
     setImg((currentImg) => {
-      if (currentImg === "/gama_audios/menu.svg") {
+      if (currentImg === "/menu.svg") {
         setStyle(0);
         toggleMainVisibility(false); // Hide main content
-        return "/gama_audios/cross.svg";
+        return "/cross.svg";
       } else {
         setStyle("-100%");
         toggleMainVisibility(true); // Show main content
-        return "/gama_audios/menu.svg";
+        return "/menu.svg";
       }
     });
   };
@@ -32,14 +32,14 @@ function Nav({ toggleMainVisibility }) {
     <>
       <div className='main-nav-area'>
         <div className="img-area">
-          <img src="/gama_audios/logo.svg" alt="logo" />
+          <img src="/logo.svg" alt="logo" />
           <h1>Gama Audios</h1>
         </div>
         <ul className='desktop-ul'>
-          <li><Link to={"/gama_audios/"} style={{ color: "white", textDecoration: "none" }}>Home</Link></li>
-          <li><Link to={"/gama_audios/about"} style={{ color: "white", textDecoration: "none" }}>About</Link> </li>
-          <li><Link to={"/gama_audios/blogs"} style={{ color: "white", textDecoration: "none" }}>Blogs</Link> </li>
-          <li><Link to={"/gama_audios/contacts"} style={{ color: "white", textDecoration: "none" }}>Contacts</Link> </li>
+          <li><Link to={"/"} style={{ color: "white", textDecoration: "none" }}>Home</Link></li>
+          <li><Link to={"/about"} style={{ color: "white", textDecoration: "none" }}>About</Link> </li>
+          <li><Link to={"/blogs"} style={{ color: "white", textDecoration: "none" }}>Blogs</Link> </li>
+          <li><Link to={"/contacts"} style={{ color: "white", textDecoration: "none" }}>Contacts</Link> </li>
         </ul>
         <button className='menu-btn' onClick={changeImg}>
           <img src={img} alt="menu" />
@@ -47,10 +47,10 @@ function Nav({ toggleMainVisibility }) {
       </div>
       <div className="menu-area" style={menuStyles}>
         <ul className='android-ul'>
-          <li><Link to={"/gama_audios/"} style={{ color: "black", textDecoration: "none" }}>Home</Link></li>
-          <li><Link to={"/gama_audios/about"} style={{ color: "black", textDecoration: "none" }}>About</Link> </li>
-          <li><Link to={"/gama_audios/blogs"} style={{ color: "black", textDecoration: "none" }}>Blogs</Link> </li>
-          <li><Link to={"/gama_audios/contacts"} style={{ color: "black", textDecoration: "none" }}>Contacts</Link> </li>
+          <li><Link to={"/"} style={{ color: "black", textDecoration: "none" }}>Home</Link></li>
+          <li><Link to={"/about"} style={{ color: "black", textDecoration: "none" }}>About</Link> </li>
+          <li><Link to={"/blogs"} style={{ color: "black", textDecoration: "none" }}>Blogs</Link> </li>
+          <li><Link to={"/contacts"} style={{ color: "black", textDecoration: "none" }}>Contacts</Link> </li>
         </ul>
       </div>
     </>

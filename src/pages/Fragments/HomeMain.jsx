@@ -10,7 +10,7 @@ const HomeMain = () => {
 
   const [title, setTitle] = useState("Title of the video");
   const [views, setViews] = useState("0");
-  const [thumbnail, setThumbnail] = useState("/gama_audios/album.jpg");
+  const [thumbnail, setThumbnail] = useState("/album.jpg");
 
   const [dlLink, setDlLink] = useState("");
 
@@ -65,7 +65,7 @@ const HomeMain = () => {
   useEffect(() => {
     if (musicData) {
       console.log("Updated musicData:", musicData);
-      setThumbnail(musicData?.picture || "/gama_audios/album.jpg");
+      setThumbnail(musicData?.picture || "/album.jpg");
       setViews(musicData?.stats?.viewCount || "0");
       setTitle(musicData?.description || "No title available");
     }
@@ -86,7 +86,7 @@ const HomeMain = () => {
       <p className='home_heading semiheading'><b>• With Gama Audios •</b></p>
 
       <div className="logo_and_text">
-        <img src="/gama_audios/logo_.png" alt="logo" className='blacklogo home_logo' />
+        <img src="/logo_.png" alt="logo" className='blacklogo home_logo' />
         <h2>Gama Audios</h2>
       </div>
 
@@ -100,7 +100,7 @@ const HomeMain = () => {
           onChange={(e) => setSearchVal(e.target.value)}
         />
         <button className="search_btn" onClick={fetchData}>
-          <img src="/gama_audios/search.svg" alt="search" />
+          <img src="/search.svg" alt="search" />
         </button>
       </div>
 
