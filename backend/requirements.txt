@@ -1,2 +1,3 @@
 FastAPI
 pytubefix
+uvicorn[standard]
