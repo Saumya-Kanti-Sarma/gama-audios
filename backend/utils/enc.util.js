@@ -4,7 +4,7 @@ import crypto from "crypto";
 import { configDotenv } from "dotenv";
 configDotenv();
 
-export default class enc {
+export default class Enc {
   #SECRECT_KEY = process.env.SECRECT_KEY;
   encrypt(text) {
     try {
@@ -38,7 +38,3 @@ export default class enc {
     }
   }
 }
-const encryption = new enc();
-console.log(encryption.encrypt("hello"));
-
-console.log(encryption.decrypt("2b9c807a5c3b77091e4dc059398e0866:888b80dbb74af7a0a1cd6a8abcb6a289"));
