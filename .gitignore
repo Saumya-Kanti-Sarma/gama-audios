@@ -3,3 +3,4 @@ tests.js
 commands.txt
 .vscode
 .env
+node_modules
