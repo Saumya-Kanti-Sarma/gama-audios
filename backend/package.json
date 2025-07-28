@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "downloader": "node utils/downloader.util.js"
   },
   "keywords": [],
   "author": "",
