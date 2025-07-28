@@ -1,7 +1,10 @@
 import puppeteer from 'puppeteer';
+import Enc from './enc.util.js';
 import { configDotenv } from 'dotenv';
 
 configDotenv();
+const enc = new Enc();
+
 class downloader {
   #privateURI = process.env.PRIVATE_URI;
 
@@ -20,19 +23,24 @@ export class mp3Downloader extends downloader {
     super();
   };
 
-  async mp3Download(url) {
+  async downloadMp3(url) {
     const { page, browser } = await this.browser();
-    page.locator(this.#inputLocator).fill(url);
-    page.locator(this.#btnLocator).click();
+
+    await page.locator(this.#inputLocator).fill(url);
+    await page.locator(this.#btnLocator).click();
+
     const allLinks = [];
     page.on("request", (req) => {
       const link = req.url();
+
       if (link.includes(this.#verifyingURI)) {
-        allLinks.push(link);
+        const encryptedLink = enc.encrypt(link);
+        allLinks.push(encryptedLink);
       };
+
     })
     await new Promise(res => setTimeout(res, 5000));
     browser.close();
     return allLinks;
   };
-}
+};
