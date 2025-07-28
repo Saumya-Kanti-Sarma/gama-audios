@@ -9,7 +9,7 @@ class downloader {
   #privateURI = process.env.PRIVATE_URI;
 
   async browser() {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     page.goto(this.#privateURI);
     return { page, browser };
