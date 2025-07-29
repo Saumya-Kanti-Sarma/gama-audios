@@ -4,80 +4,29 @@ import "../Styles/universal.css";
 import axios from 'axios';
 const HomeMain = () => {
   const [searchVal, setSearchVal] = useState('');
-  const [musicData, setMusicData] = useState(null);
-  const [displayLoading, setDisplayLoading] = useState("none");
-  const [displayContent, setDisplayContent] = useState("block");
-
-  const [title, setTitle] = useState("Title of the video");
-  const [views, setViews] = useState("0");
-  const [thumbnail, setThumbnail] = useState("/album.jpg");
-
-  const [dlLink, setDlLink] = useState("");
-
+  const [downloadURL, setdownloadURL] = useState('');
+  const [loading, setLoading] = useState(false);
   const fetchData = async () => {
     if (!searchVal.trim()) return; // Prevents empty requests
+    setLoading(true)
 
-    setDisplayLoading("block");
-    setDisplayContent("none");
-
+    const url = searchVal.replace("https://youtu.be/", "");
     try {
-      const response = await axios.get(
-        'https://youtube-video-and-shorts-downloader1.p.rapidapi.com/api/getYTVideo',
-        {
-          params: { url: searchVal },
-          headers: {
-            'x-rapidapi-key': import.meta.env.VITE_MUSIC_KEY,
-            'x-rapidapi-host': 'youtube-video-and-shorts-downloader1.p.rapidapi.com',
-          },
-        }
-      );
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}${url}&key=${import.meta.env.VITE_MY_API_KEY}`);
+      //console.log("API Response:", response);
+      const data = response.data;
+      console.log(data);
 
-      console.log("API Response:", response.data);
-      setMusicData(response.data);
+
     } catch (error) {
       console.error("Error fetching video data:", error);
-      setDisplayLoading("none");
-      setDisplayContent("block");
+
+
+    } finally {
+      setLoading(false)
+
     }
-
-    try {
-      const response = await axios.get(
-        'https://youtube-mp310.p.rapidapi.com/download/mp3',
-        {
-          params: { url: searchVal },
-          headers: {
-            'x-rapidapi-key': import.meta.env.VITE_KEY,
-            'x-rapidapi-host': 'youtube-mp310.p.rapidapi.com',
-          },
-        }
-      );
-
-      console.log("Download API Response:", response.data);
-      setDlLink(response.data.downloadUrl);
-    } catch (error) {
-      console.error("Error fetching download link:", error);
-    }
-
-    setDisplayLoading("none");
-    setDisplayContent("block");
   };
-
-  useEffect(() => {
-    if (musicData) {
-      console.log("Updated musicData:", musicData);
-      setThumbnail(musicData?.picture || "/album.jpg");
-      setViews(musicData?.stats?.viewCount || "0");
-      setTitle(musicData?.description || "No title available");
-    }
-  }, [musicData]);
-
-  const formatViews = (num) => {
-    if (num >= 1_000_000_000) return (num / 1_000_000_000).toFixed(1) + 'B';
-    if (num >= 1_000_000) return (num / 1_000_000).toFixed(1) + 'M';
-    if (num >= 1_000) return (num / 1_000).toFixed(1) + 'K';
-    return num;
-  };
-
   return (
     <>
       <h1 className='home_heading'>
@@ -104,28 +53,13 @@ const HomeMain = () => {
         </button>
       </div>
 
-      <div className='loader' style={{ display: displayLoading }}>Loading...</div>
-
-      {/* SEARCH RESULTS */}
-      <div className="search_results" style={{ display: displayContent }}>
-        <div className="search_results_child">
-          <div className="search_res_img">
-            <img className='search-res_img_inner_img' src={thumbnail} alt="album" />
-          </div>
-          <div className="search_res_texts">
-            <p className="search_text_res">Title: {title}</p>
-            <p className="search_text_res">
-              Views: {formatViews(views)}
-              <button>
-                <a href={dlLink}>Download</a>
-              </button>
-              <button>
-                <a href={searchVal} target="_blank">Watch</a>
-              </button>
-            </p>
-          </div>
-        </div>
+      <div className='loader' style={{ display: loading ? "" : "none" }}>Loading...</div>
+      <div className='search_text_res' style={{ display: downloadURL.length > 1 ? "" : "none" }} >
+        <h2>song name</h2>
+        <button>Download</button>
       </div>
+      <br />
+      <hr />
     </>
   );
 };

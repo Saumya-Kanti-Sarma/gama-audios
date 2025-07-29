@@ -21,11 +21,7 @@ const Home = () => {
           <div className="content home-content">
             <div className="content-area main_content">
               <HomeMain />
-            </div>
-            <div className="content-area how_to_use">
               <DownloadExp />
-              <br />
-
             </div>
           </div>
           <br />

@@ -63,32 +63,10 @@
   margin-left: 20px;
 }
 
-.search_results_child {
-  display: flex;
-  width: calc(50vw - 5px);
-  margin-top: 15px;
-}
-
-.search_res_img img {
-  width: 25vw;
-  min-width: 77px;
-  max-width: 400px;
-  object-fit: cover;
-  height: 100%;
-}
-
-.search_res_texts {
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
 .search_text_res {
-  font-size: 30px;
-  font-style: bold;
-  margin: 0;
   display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .search_text_res button {
