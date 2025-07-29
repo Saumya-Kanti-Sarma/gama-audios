@@ -34,8 +34,7 @@ export class mp3Downloader extends downloader {
       const link = req.url();
 
       if (link.includes(this.#verifyingURI)) {
-        const encryptedLink = enc.encrypt(link);
-        allLinks.push(encryptedLink);
+        allLinks.push(link);
       };
 
     })
